@@ -1,0 +1,44 @@
+import { useState } from 'react';
+import { ArrowUpRight, Code2, PenTool, Layers } from 'lucide-react';
+import { siJavascript, siTypescript, siReact, siHtml5, siCss, siPython, siNodedotjs, siTailwindcss, siGit, siFigma } from 'simple-icons';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import formImage from '@/assets/project-form.jpg';
+import spacesImage from '@/assets/project-spaces.jpg';
+
+const projects = [
+  { title: 'FORM / Sound, reimagined.', category: 'Commerce · Creative development', image: formImage, alt: 'Silver headphones on a sage background', tags: ['React', 'TypeScript', 'Motion'], description: 'A concept storefront exploring the intersection of sound, industrial design, and considered digital experiences.', details: 'A product-led experience with generous photography, clear product storytelling, and a deliberately restrained visual language. This portfolio concept demonstrates art direction and interface design rather than commissioned client work.' },
+  { title: 'SPACES / A different perspective.', category: 'Architecture · Digital experience', image: spacesImage, alt: 'Geometric concrete museum with terracotta walls', tags: ['Web design', 'Editorial', 'Interaction'], description: 'An architectural editorial concept built around space, rhythm, and a new way of seeing.', details: 'A study in editorial hierarchy: strong imagery, an open grid, and measured transitions that let the architecture lead. This is a self-initiated portfolio concept, not a claim of work for the photographed venue.' },
+];
+const technologies = [
+  { icon: siJavascript, role: 'Language' }, { icon: siTypescript, role: 'Language' }, { icon: siReact, role: 'Frontend' }, { icon: siHtml5, role: 'Markup' }, { icon: siCss, role: 'Styling' },
+  { icon: siPython, role: 'Language' }, { icon: siNodedotjs, role: 'Runtime' }, { icon: siTailwindcss, role: 'Styling' }, { icon: siGit, role: 'Version control' }, { icon: siFigma, role: 'Design' },
+];
+const articles = [
+  { title: 'Motion should mean something.', category: 'Interaction', time: '3 min read', body: ['The best transitions do more than decorate a screen. They explain what changed, where the user is going, and how one moment relates to the next.', 'Start with the purpose of the movement. A navigation shift can make room for content. A reveal can establish hierarchy. A gentle image transition can connect two states without interrupting reading.', 'Restraint is part of the craft. Keep motion brief, avoid moving reading text continuously, and always offer the same clear experience when reduced motion is enabled.'] },
+  { title: 'From a good interface to a memorable one.', category: 'Design', time: '4 min read', body: ['A memorable interface is built on a useful foundation: clear structure, legible typography, and interactions that behave as expected.', 'Then comes character. A distinctive type pairing, an intentional image crop, or a carefully chosen material can create identity without sacrificing usability.', 'The test is simple: remove the decoration. If the page is still easy to understand and use, the visual layer can elevate it instead of hiding its weaknesses.'] },
+  { title: 'Building for the space between screens.', category: 'Development', time: '3 min read', body: ['Responsive design is not a desktop layout squeezed into a smaller rectangle. It is a system that adapts to the space available.', 'Use flexible grids and stable image proportions. Let long labels wrap, preserve comfortable touch targets, and give fixed navigation enough room without covering the content.', 'Test at intermediate sizes as well as familiar devices. The awkward width between two breakpoints often reveals more than either endpoint.'] },
+];
+
+export function PersonalAbout() {
+  return <section id="about" className="personal-about section-container">
+    <div className="section-heading reveal"><span className="eyebrow">The person behind the pixels / 01</span><span className="section-index">About Me</span></div>
+    <div className="about-grid"><h2 className="section-title reveal">A curious mind.<br />A <em>creative</em> approach.</h2><div className="about-text reveal"><p className="editorial-copy">At the intersection of design and code, I explore how thoughtful digital experiences come to life.</p><p>From a first sketch to the final interaction, my focus is on clarity, character, and the little details that make an experience feel considered.</p><div className="capability-list"><span><PenTool />Design with intention</span><span><Code2 />Build with precision</span><span><Layers />Connect the details</span></div></div></div>
+  </section>;
+}
+
+export function PersonalPortfolio() {
+  const [project, setProject] = useState<(typeof projects)[number] | null>(null);
+  const [article, setArticle] = useState<(typeof articles)[number] | null>(null);
+  return <>
+    <section id="projects" className="projects-section portfolio-band"><div className="section-container">
+      <div className="section-heading reveal"><span className="eyebrow">Selected explorations / 02</span><span className="section-index">Concept projects</span></div>
+      <div className="portfolio-heading reveal"><h2 className="section-title">Featured <em>Projects.</em></h2><p>A little strategy. A lot of intention.<br />Ideas brought into focus.</p></div>
+      <div className="project-grid">{projects.map((item, i) => <article className="project-item reveal" key={item.title}><Button variant="ghost" className="project-image-button" onClick={() => setProject(item)} aria-label={`View ${item.title}`}><img src={item.image} alt={item.alt} loading="lazy" width={1200} height={912} /><span className="project-open"><ArrowUpRight /></span><span className="project-number">0{i + 1}</span></Button><div className="project-meta"><div className="min-w-0"><span className="eyebrow">{item.category}</span><h3>{item.title}</h3></div><Button size="icon" variant="ghost" aria-label={`Read about ${item.title}`} onClick={() => setProject(item)}><ArrowUpRight /></Button></div><div className="project-tags">{item.tags.map(tag => <span key={tag}>{tag}</span>)}</div></article>)}</div>
+    </div></section>
+    <section id="skills" className="skills-section section-container"><div className="section-heading reveal"><span className="eyebrow">The creative toolkit / 03</span><span className="section-index">Design × Development</span></div><div className="portfolio-heading reveal"><h2 className="section-title">Skills &amp; <em>Tech Stack.</em></h2><p>The tools behind the work.<br />Always learning. Always exploring.</p></div><div className="tech-grid">{technologies.map(({ icon, role }) => <div key={icon.slug} className="tech-item reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d={icon.path} /></svg><div><h3>{icon.title}</h3><span>{role}</span></div></div>)}</div></section>
+    <section id="blog" className="blog-section portfolio-band"><div className="section-container"><div className="section-heading reveal"><span className="eyebrow">Notes from the process / 04</span><span className="section-index">Sample journal</span></div><div className="portfolio-heading reveal"><h2 className="section-title">Ideas, <em>in writing.</em></h2><p>Thoughts on design, development,<br />and everything in between.</p></div><div className="article-list">{articles.map((item, i) => <Button key={item.title} variant="ghost" className="article-row reveal" onClick={() => setArticle(item)}><span className="article-number">0{i + 1}</span><span className="article-copy"><span className="eyebrow">{item.category} / {item.time}</span><span className="article-title">{item.title}</span></span><ArrowUpRight /></Button>)}</div></div></section>
+    <Dialog open={project !== null} onOpenChange={open => { if (!open) setProject(null); }}><DialogContent className="portfolio-detail">{project && <><img src={project.image} alt={project.alt} width={1200} height={912} /><span className="eyebrow">Portfolio concept</span><DialogTitle>{project.title}</DialogTitle><DialogDescription>{project.description}</DialogDescription><p>{project.details}</p><div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></>}</DialogContent></Dialog>
+    <Dialog open={article !== null} onOpenChange={open => { if (!open) setArticle(null); }}><DialogContent className="portfolio-detail article-detail">{article && <><span className="eyebrow">Sample journal / {article.category}</span><DialogTitle>{article.title}</DialogTitle><DialogDescription>{article.time} · Design &amp; development notes</DialogDescription>{article.body.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</>}</DialogContent></Dialog>
+  </>;
+}

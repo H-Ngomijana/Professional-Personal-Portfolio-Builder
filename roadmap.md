@@ -5,3 +5,9 @@
 - [x] Add personal About Me, Featured Projects, authentic Skills & Tech Stack logos, and Blog with detail views.
 - [x] Move navigation from the top to the bottom on scroll, with active-section tracking.
 - [x] Verify portfolio interactions and appearance; identify sample content.
+- [ ] Refine pill navigation and scroll-linked skills transitions.
+- [ ] Add supplied live projects and akibaOS logo, rebrand to Hugues B., and connect personal social links.
+- [ ] Add protected owner management for packages, prices and messages, with public package selection.
+- [ ] Connect owner email delivery after sender-domain verification.
+- [ ] Enable real package purchases after provider eligibility, owner confirmation and prices.
+- [ ] Verify updated portfolio and owner workflows.

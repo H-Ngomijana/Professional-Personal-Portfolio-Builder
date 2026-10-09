@@ -11,7 +11,20 @@ export const submitInquiry = createServerFn({ method: 'POST' })
     if (limitError) throw new Error('We could not save your inquiry. Please try again.');
     if ((count ?? 0) >= 3) throw new Error('Please wait before sending another inquiry.');
     const { error } = await supabaseAdmin.from('portfolio_inquiries').insert({
-      name: data.name, email: data.email, company: data.company, message: data.message,
+      name: data.name,
+      email: data.email,
+      company: data.company || (data.orderSubmission ? data.country : ''),
+      message: [
+        data.message,
+        ...(data.orderSubmission ? [
+          `Phone: ${data.phone || 'Not provided'}`,
+          `Country / region: ${data.country || 'Not provided'}`,
+          `Payment preference: ${data.paymentOption === 'once' ? 'One-time payment (10% estimate discount)' : 'Milestone payments'}`,
+          'Project agreement: accepted',
+        ] : []),
+      ].join('\n\n'),
+      package_id: data.packageId || null,
+      package_name: data.packageName,
     });
     if (error) throw new Error('We could not save your inquiry. Please try again.');
     return { success: true };

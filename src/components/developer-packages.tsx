@@ -1,14 +1,84 @@
-import { useQuery } from '@tanstack/react-query';
-import { useServerFn } from '@tanstack/react-start';
-import { ArrowUpRight, Check } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { listPackages } from '@/lib/packages.functions';
-export function DeveloperPackages({ onSelect }: { onSelect: (id?: string, name?: string) => void }) {
+import { useQuery } from "@tanstack/react-query";
+import { useServerFn } from "@tanstack/react-start";
+import { ArrowUpRight, Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { listPackages } from "@/lib/packages.functions";
+import { fallbackPackages, formatPackagePrice } from "@/lib/package-catalog";
+
+export function DeveloperPackages() {
   const fetchPackages = useServerFn(listPackages);
-  const { data = [], isPending, isError } = useQuery({ queryKey: ['public-packages'], queryFn: () => fetchPackages() });
-  return <section id="packages" className="portfolio-band packages-section"><div className="section-container">
-    <div className="section-heading reveal"><span className="eyebrow">From idea to launch / 05</span><span className="section-index">Work with me</span></div>
-    <div className="portfolio-heading reveal"><h2 className="section-title">Your next <em>big thing.</em></h2><p>Websites with character.<br />Platforms built around your business.</p></div>
-    {isPending ? <p role="status">Loading packages…</p> : isError ? <p role="alert">Packages are unavailable right now. Send me your project brief below.</p> : data.length ? <div className="package-grid">{data.map(item => <article className="package-item" key={item.id}><span className="eyebrow">Development package</span><h3>{item.name}</h3><p>{item.description}</p><div className="package-price">{new Intl.NumberFormat('en-US', { style: 'currency', currency: item.currency, maximumFractionDigits: item.currency === 'RWF' ? 0 : 2 }).format(item.price)}</div><ul>{item.features.map(feature => <li key={feature}><Check />{feature}</li>)}</ul><Button onClick={() => onSelect(item.id, item.name)} className="portfolio-button">Request this package<ArrowUpRight /></Button></article>)}</div> : <div className="package-custom"><span className="eyebrow">Custom development</span><h3>Built for your ambition.</h3><p>Share your website or platform idea. Let’s find the right scope for your project.</p><Button className="portfolio-button" onClick={() => onSelect()}>Discuss my project<ArrowUpRight /></Button></div>}
-  </div></section>;
+  const {
+    data = [],
+    isPending,
+    isError,
+  } = useQuery({ queryKey: ["public-packages"], queryFn: () => fetchPackages() });
+  const packages = data.length > 0 ? data : fallbackPackages;
+
+  return (
+    <section id="packages" className="portfolio-band packages-section">
+      <div className="section-container">
+        <div className="section-heading reveal">
+          <span className="eyebrow">From idea to launch / 05</span>
+          <span className="section-index">Project packages</span>
+        </div>
+        <div className="portfolio-heading reveal">
+          <h2 className="section-title">
+            Get in touch
+            <br />
+            <em>and build.</em>
+          </h2>
+          <p>
+            Buy a package for a website, platform,
+            <br />
+            or custom digital product by Hugues B.
+          </p>
+        </div>
+        {isPending ? (
+          <p role="status">Loading packages...</p>
+        ) : isError ? (
+          <p role="alert">
+            Live package prices are unavailable right now. You can still request one of the standard
+            packages below.
+          </p>
+        ) : data.length === 0 ? (
+          <p role="status">Standard packages are shown while no custom packages are published.</p>
+        ) : null}
+        <div className="package-grid">
+          {packages.map((item) => (
+            <article className="package-item reveal" key={item.id}>
+              <span className="eyebrow">Development package</span>
+              <h3>{item.name}</h3>
+              <p>{item.description}</p>
+              <div className="package-price">{formatPackagePrice(item.price, item.currency)}</div>
+              <ul>
+                {item.features.map((feature) => (
+                  <li key={feature}>
+                    <Check />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <Button asChild className="portfolio-button">
+                <a href={`/start-project?package=${encodeURIComponent(item.id)}`}>
+                  Choose this plan
+                  <ArrowUpRight />
+                </a>
+              </Button>
+            </article>
+          ))}
+        </div>
+        <div className="package-custom reveal">
+          <span className="eyebrow">Need something exact?</span>
+          <h3>Custom scope, custom timeline.</h3>
+          <p>Share the kind of platform you want, and I will help shape the right build plan.</p>
+          <Button asChild className="portfolio-button">
+            <a href="/start-project?custom=1">
+              Plan a custom project
+              <ArrowUpRight />
+            </a>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
 }

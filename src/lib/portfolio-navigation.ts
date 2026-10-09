@@ -2,7 +2,7 @@ export const portfolioSections = [
   { id: 'about', label: 'About Me' },
   { id: 'projects', label: 'Projects' },
   { id: 'skills', label: 'Skills' },
-  { id: 'blog', label: 'Blog' },
+  { id: 'packages', label: 'Packages' },
   { id: 'contact', label: 'Contact' },
 ];
 

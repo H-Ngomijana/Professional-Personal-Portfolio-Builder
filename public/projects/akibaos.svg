@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#10182b"/>
+      <stop offset="1" stop-color="#11131b"/>
+    </linearGradient>
+    <linearGradient id="card" x1="190" y1="210" x2="1090" y2="660" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#202c48"/>
+      <stop offset="1" stop-color="#151d31"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="530" y1="330" x2="1040" y2="520" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4b83ff"/>
+      <stop offset="1" stop-color="#8ab7ff"/>
+    </linearGradient>
+    <filter id="shadow" x="115" y="154" width="1050" height="659" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+  </defs>
+  <path fill="url(#bg)" d="M0 0h1280v760H0z"/>
+  <circle cx="1067" cy="140" r="248" fill="#244ea2" fill-opacity=".2"/>
+  <circle cx="1067" cy="140" r="210" stroke="#5487ff" stroke-opacity=".16"/>
+  <circle cx="1067" cy="140" r="164" stroke="#5487ff" stroke-opacity=".16"/>
+  <rect x="169" y="218" width="932" height="512" rx="35" fill="#000" fill-opacity=".58" filter="url(#shadow)"/>
+  <rect x="180" y="180" width="920" height="500" rx="28" fill="url(#card)" stroke="#566888" stroke-opacity=".45"/>
+  <path d="M208 180h864a28 28 0 0 1 28 28v62H180v-62a28 28 0 0 1 28-28Z" fill="#0d1423"/>
+  <circle cx="218" cy="224" r="6" fill="#ff6868"/>
+  <circle cx="240" cy="224" r="6" fill="#ffc968"/>
+  <circle cx="262" cy="224" r="6" fill="#62d597"/>
+  <path d="M180 270h920" stroke="#566888" stroke-opacity=".35"/>
+  <circle cx="227" cy="314" r="16" fill="#3978fa"/>
+  <path d="m220 314 7-8 7 8-7 8-7-8Z" fill="#fff"/>
+  <text x="257" y="322" fill="#f5f7ff" font-family="Arial,sans-serif" font-size="23" font-weight="700" letter-spacing="1.2">AKIBAOS</text>
+  <text x="928" y="320" fill="#b4c3e2" font-family="Arial,sans-serif" font-size="13">RW / EN</text>
+  <rect x="228" y="368" width="824" height="258" rx="20" fill="#11192a" stroke="#3d4d70" stroke-opacity=".6"/>
+  <text x="269" y="424" fill="#a9badb" font-family="Arial,sans-serif" font-size="14" letter-spacing="2">YOUR MONEY, IN MOTION</text>
+  <text x="269" y="479" fill="#fff" font-family="Arial,sans-serif" font-size="39" font-weight="700">Build a better saving habit.</text>
+  <text x="269" y="514" fill="#b2bfd7" font-family="Arial,sans-serif" font-size="17">A clearer way to save, plan, and grow your money.</text>
+  <rect x="269" y="548" width="170" height="48" rx="24" fill="url(#blue)"/>
+  <text x="291" y="578" fill="#fff" font-family="Arial,sans-serif" font-size="14" font-weight="700">Start saving</text>
+  <rect x="786" y="397" width="218" height="185" rx="17" fill="#1a2740" stroke="#576e9d" stroke-opacity=".55"/>
+  <text x="809" y="435" fill="#a9badb" font-family="Arial,sans-serif" font-size="12">TOTAL SAVINGS</text>
+  <text x="809" y="477" fill="#fff" font-family="Arial,sans-serif" font-size="25" font-weight="700">RWF 842,500</text>
+  <path d="m812 542 34-26 31 13 33-43 32 21 37-48" stroke="url(#blue)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
+  <path d="M812 552h165" stroke="#536486" stroke-opacity=".5"/>
+</svg>

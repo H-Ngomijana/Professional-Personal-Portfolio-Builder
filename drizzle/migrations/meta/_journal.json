@@ -15,6 +15,13 @@
       "when": 1791355412815,
       "tag": "0001_portfolio_owner_packages",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791379639167,
+      "tag": "0002_live_portfolio_content",
+      "breakpoints": true
     }
   ]
 }

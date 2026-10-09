@@ -78,8 +78,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Ascend — Creative Web3 Agency" },
-      { name: "description", content: "Ascend is an independent creative agency building the next generation of Web3 brands." },
+      { title: "Hugues B. - Creative Developer & Platform Builder" },
+      { name: "description", content: "Portfolio, featured projects, packages, and contact links for Hugues B." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
